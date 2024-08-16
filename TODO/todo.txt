@@ -1,1 +1,0 @@
-Fix Username: When we check username from db during signup stage, it is case sensitive. We can't have Third and third both as unique usernames
