@@ -8,7 +8,7 @@ import { authOptions } from '../auth/[...nextauth]/options';
 export async function GET(request: Request) {
   await dbConnect();
   const session = await getServerSession(authOptions);
-  const _user: User = session?.user;
+  const _user: User = session?.user as User;
 
   if (!session || !_user) {
     return Response.json(
@@ -20,11 +20,11 @@ export async function GET(request: Request) {
   try {
     const user = await UserModel.aggregate([
       { $match: { _id: userId } },
-      { $unwind: '$messages' },
+      { $unwind: { path: '$messages', preserveNullAndEmptyArrays: true } }, //Unwind is applied to Arrays, and when there is an empty array,there is nothing to unwind, hence it might return error. Therefore, we preservenullandemptyarrays
       { $sort: { 'messages.createdAt': -1 } },
       { $group: { _id: '$_id', messages: { $push: '$messages' } } },
     ]).exec();
-
+    console.log("User from pipeline",user)
     if (!user || user.length === 0) {
       return Response.json(
         { message: 'User not found', success: false },
