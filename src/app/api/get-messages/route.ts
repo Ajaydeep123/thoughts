@@ -24,7 +24,6 @@ export async function GET(request: Request) {
       { $sort: { 'messages.createdAt': -1 } },
       { $group: { _id: '$_id', messages: { $push: '$messages' } } },
     ]).exec();
-    console.log("User from pipeline",user)
     if (!user || user.length === 0) {
       return Response.json(
         { message: 'User not found', success: false },
