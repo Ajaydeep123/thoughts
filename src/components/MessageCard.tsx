@@ -52,17 +52,17 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   };
 
   return (
-    <Card className="card-bordered">
+    <Card className="dark:bg-zinc-950 dark:text-zinc-50 text-zinc-950">
       <CardHeader>
         <div className="flex justify-between items-center">
           <CardTitle>{message.content}</CardTitle>
-          <AlertDialog>
+          <AlertDialog >
             <AlertDialogTrigger asChild>
               <Button variant='destructive'>
                 <X className="w-5 h-5" />
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className='dark:bg-zinc-950 dark:text-zinc-50'>
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
@@ -71,10 +71,10 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>
+                <AlertDialogCancel className='dark:bg-zinc-950 dark:text-zinc-50'>
                   Cancel
                 </AlertDialogCancel>
-                <AlertDialogAction onClick={handleDeleteConfirm}>
+                <AlertDialogAction onClick={handleDeleteConfirm} >
                   Continue
                 </AlertDialogAction>
               </AlertDialogFooter>

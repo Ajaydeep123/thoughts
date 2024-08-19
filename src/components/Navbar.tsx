@@ -43,10 +43,10 @@ function Navbar() {
             <div className="text-zinc-950 dark:text-white">Loading...</div>
           ) : session ? (
             <>
-              <span className="mr-4">
+              <span className="mr-4 hidden sm:inline-flex">
                 Welcome, {user.username || user.email}
               </span>
-              <Button onClick={() => signOut()} className="w-full md:w-auto bg-slate-100 text-zinc-950" variant='outline'>
+              <Button onClick={() => signOut()} className="w-full md:w-auto dark:bg-zinc-950 dark:text-zinc-50" variant={'ghost'}>
                 Logout
               </Button>
             </>

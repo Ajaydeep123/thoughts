@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { CardHeader, CardContent, Card } from '@/components/ui/card';
 import { useCompletion } from 'ai/react';
+import ThemeSwitch from '../../../components/theme-switch';
 import {
   Form,
   FormControl,
@@ -24,7 +25,8 @@ import { ApiResponse } from '@/types/ApiResponse';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { messageSchema } from '@/schemas/messageSchema';
-
+import XIcon from '@/components/icons/x';
+import GitHubIcon from '@/components/icons/github';
 const specialChar = '||';
 
 const parseStringMessages = (messageString: string): string[] => {
@@ -101,7 +103,37 @@ export default function SendMessage() {
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
+    <>
+    <div className='inset-x-0 top-0 w-auto flex justify-around pt-4 mx-auto '>
+        <a href='/' className='relative flex  items-center'>
+          <div className='text-zinc-950  dark:text-white'>invisibuzz</div>
+          <span className='mb-4 ml-2 select-none rounded-full bg-zinc-800 px-2 py-0.5 text-xs text-zinc-50'>
+            beta
+          </span>
+        </a>
+        <div className='flex justify-end relative'>
+          <nav className='flex items-center gap-2'>
+              <a
+                href='https://x.com/AjaydeepRajput'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='hidden sm:inline-flex h-9 w-9 items-center justify-center'
+              >
+                <XIcon className='h-4 w-4 fill-zinc-950 dark:fill-white' />
+              </a>
+              <a
+                href='https://github.com/Ajaydeep123/thoughts'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='hidden sm:inline-flex h-9 w-9 items-center justify-center'
+              >
+                <GitHubIcon className='h-4 w-4 fill-zinc-950 dark:fill-white' />
+              </a>
+          </nav>
+          <ThemeSwitch />
+        </div>
+    </div>
+    <div className="container mx-auto my-8 p-6  rounded max-w-4xl dark:bg-zinc-950 dark:text-zinc-50">
       <h1 className="text-4xl font-bold mb-6 text-center">
         Public Profile Link
       </h1>
@@ -116,7 +148,7 @@ export default function SendMessage() {
                 <FormControl>
                   <Textarea
                     placeholder="Write your anonymous message here"
-                    className="resize-none"
+                    className="resize-none dark:bg-zinc-950 dark:text-zinc-50 "
                     {...field}
                   />
                 </FormControl>
@@ -139,7 +171,7 @@ export default function SendMessage() {
         </form>
       </Form>
 
-      <div className="space-y-4 my-8">
+      <div className="space-y-4 my-8 ">
         <div className="space-y-2">
           <Button
             onClick={fetchSuggestedMessages}
@@ -150,11 +182,11 @@ export default function SendMessage() {
           </Button>
           <p>Click on any message below to select it.</p>
         </div>
-        <Card>
+        <Card className='dark:bg-zinc-950 dark:text-zinc-50'>
           <CardHeader>
             <h3 className="text-xl font-semibold">Messages</h3>
           </CardHeader>
-          <CardContent className="flex flex-col space-y-4">
+          <CardContent className="flex flex-col space-y-4 dark:bg-zinc-950 dark:text-zinc-50">
             {error ? (
               <p className="text-red-500">{error.message}</p>
             ) : (
@@ -162,7 +194,7 @@ export default function SendMessage() {
                 <Button
                   key={index}
                   variant="outline"
-                  className="mb-2"
+                  className="mb-2 dark:bg-zinc-950 dark:text-zinc-50"
                   onClick={() => handleMessageClick(message)}
                 >
                   {message}
@@ -180,5 +212,6 @@ export default function SendMessage() {
         </Link>
       </div>
     </div>
+    </>
   );
 }

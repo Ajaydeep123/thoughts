@@ -130,7 +130,7 @@ const copyToClipboard = () =>{
   });
 };
 return (
-  <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
+  <div className="my-8 mx-4 sm:mx-8 lg:mx-auto p-6 dark:bg-zinc-950 dark:text-zinc-50 rounded w-full max-w-6xl overflow-hidden">
     <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
 
     <div className="mb-4">
@@ -140,9 +140,9 @@ return (
           type="text"
           value={profileUrl}
           disabled
-          className="input input-bordered w-full p-2 mr-2"
+          className="input rounded-sm shadow-sm text-sm font-medium leading-none input-bordered w-full p-2 mr-2"
         />
-        <Button onClick={copyToClipboard}>Copy</Button>
+        <Button onClick={copyToClipboard} >Copy</Button>
       </div>
     </div>
 
@@ -160,7 +160,7 @@ return (
     <Separator />
 
     <Button
-      className="mt-4"
+      className="mt-4 dark:bg-zinc-950 dark:text-zinc-50 "
       variant="outline"
       onClick={(e) => {
         e.preventDefault();
