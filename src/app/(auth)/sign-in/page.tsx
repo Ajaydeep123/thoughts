@@ -52,7 +52,7 @@ export default function SignInForm(){
             }else{
                 toast({
                     title: 'Error',
-                    description: 'result.error',
+                    description: result?.error,
                     variant: 'destructive',
                 });
             }
